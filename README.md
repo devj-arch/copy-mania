@@ -85,7 +85,7 @@ Settings → Extensions → Copy Mania → Ignore Names
 
 ## 🧑‍💻 Author
 **Dev Joshi**  
-📬 [Your LinkedIn or portfolio link here]  
+📬 [LinkedIn](https://www.linkedin.com/in/dev-joshi-b07410324/)  
 💡 “Just a dev having fun automating the small stuff.”
 
 ---
