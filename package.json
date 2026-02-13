@@ -1,0 +1,62 @@
+{
+  "name": "copy-mania",
+  "displayName": "Copy Mania",
+  "description": "Copy folder contents into a structured markdown format. Right-click a folder and copy it with or without subfolders.",
+  "keywords": ["copy folder", "structured copy", "markdown export", "clipboard"],
+  "version": "0.0.1",
+  "publisher": "Dev Joshi",
+  "engines": { "vscode": "^1.85.0" },
+  "categories": ["Other"],
+  "activationEvents": [
+    "onCommand:copyFolderContents.copyRecursive",
+    "onCommand:copyFolderContents.copyTopLevel"
+  ],
+  "contributes": {
+    "commands": [
+      { "command": "copyFolderContents.copyRecursive", "title": "Copy Folder (Structured): include subfolders" },
+      { "command": "copyFolderContents.copyTopLevel",  "title": "Copy Folder (Structured): top-level only" }
+    ],
+    "menus": {
+      "explorer/context": [
+        { "command": "copyFolderContents.copyRecursive", "when": "explorerResourceIsFolder", "group": "navigation" },
+        { "command": "copyFolderContents.copyTopLevel",  "when": "explorerResourceIsFolder", "group": "navigation" }
+      ]
+    },
+    "configuration": {
+      "type": "object",
+      "title": "Copy Folder Contents",
+      "properties": {
+        "copyFolderContents.ignoreNames": {
+          "type": "array",
+          "default": ["node_modules",  ".git",  "dist",  "build",  ".next",  ".turbo",  ".cache",  ".svelte-kit",  "target",  "out",  "coverage",  "bin",  "obj",  ".env",  ".env.*",  "package-lock.json",  "yarn.lock",  "pnpm-lock.yaml",  "*.png",  "*.jpg",  "*.jpeg",  "*.gif",  "*.svg",  "*.ico",  "*.pdf",  "*.zip",  "*.tar",  "*.gz",  "*.rar",  "*.mp3",  "*.mp4",  "*.mov",  "*.avi",  "*.webm",  "*.wav", "README.md"],
+          "description": "Folder or file names to ignore anywhere in the tree."
+        },
+        "copyFolderContents.maxOutputBytes": {
+          "type": "number",
+          "default": 1000000,
+          "description": "Warn if the combined output exceeds this many bytes."
+        },
+        "copyFolderContents.skipLikelyBinary": {
+          "type": "boolean",
+          "default": true,
+          "description": "Skip files that look binary (contains NUL bytes)."
+        }
+      }
+    }
+  },
+  "main": "./out/extension.js",
+  "scripts": {
+    "compile": "tsc -p .",
+    "watch": "tsc -w -p .",
+    "package": "vsce package"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "@types/vscode": "^1.85.0",
+    "typescript": "^5.4.0",
+    "eslint": "^9.0.0"
+  },
+  "dependencies": {
+    "vscode-uri": "^3.0.8"
+  }
+}
